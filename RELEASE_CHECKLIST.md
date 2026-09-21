@@ -20,7 +20,7 @@ Version **v0.1.0** has been published on GitHub and archived on Zenodo.
 - [x] Zenodo archive published.
 - [x] DOI assigned: `10.5281/zenodo.22881350`.
 - [x] DOI added to `README.md` and `CITATION.cff`.
-- [ ] Post the prepared Nav2/OpenNav community discussion.
+- [x] Post the prepared Nav2/OpenNav community discussion: https://github.com/orgs/ros-navigation/discussions/6552
 
 ## Optional later work — not required now
 
