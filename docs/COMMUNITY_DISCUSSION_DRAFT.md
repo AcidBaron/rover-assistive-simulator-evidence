@@ -18,9 +18,9 @@ A few findings from the logged development campaign may be useful to other users
 
 4. **Reacquisition is a useful first-class metric.** In domestic scenes, temporary loss is normal around doors and occlusions. We therefore evaluate TRUE_LOST and successful reacquisition rather than requiring perfect continuous lock.
 
-The existing frozen logs contain at least three direct FRONT→REAR switches, three bounded dropout→direct-recovery episodes without prow switching, and seven TRUE_LOST→reacquire pairings in the primary accepted/candidate-clean FOLLOW session. These are retrospective episode-level observations from long operator sessions, not randomized benchmark repetitions.
+The existing frozen logs contain at least three direct FRONT→REAR switches, three bounded dropout→direct-recovery episodes without prow switching, and seven TRUE_LOST→reacquire pairings in the primary candidate-clean FOLLOW session. These are retrospective episode-level observations from long operator sessions, not randomized benchmark repetitions.
 
-We are sharing the evidence matrix, hashes and episode inventory first. We would especially welcome feedback on:
+We are sharing the evidence matrix, frozen-result hashes and episode inventory first. We would especially welcome feedback on:
 
 - whether these edge cases overlap with known Following Server integration patterns;
 - whether a small reusable simulator scenario would be useful upstream;
