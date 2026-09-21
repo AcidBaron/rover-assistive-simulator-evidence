@@ -1,6 +1,6 @@
 # Public Release Checklist
 
-This repository remains private until the final publication step.
+This repository is release-ready as v0.1.0 and remains private until the final publication step.
 
 ## Blocking before GitHub publication
 
@@ -15,8 +15,8 @@ This repository remains private until the final publication step.
 
 ## Final publication actions
 
-- [ ] Remove draft-only process files that are not useful to public readers.
-- [ ] Change the README/CITATION status from draft to v0.1 release.
+- [x] Remove draft-only process files that are not useful to public readers.
+- [x] Change the README/CITATION status from draft to v0.1.0 release-ready.
 - [ ] Make the repository public.
 - [ ] Create a tagged GitHub release.
 - [ ] Optionally connect the public release to Zenodo for a DOI.
