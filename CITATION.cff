@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this evidence release, please cite this record."
+title: "Rover Assistive Simulator: Engineering Evidence for Domestic Human-Aware Navigation and Person Following with ROS 2/Nav2"
+type: dataset
+authors:
+  - family-names: "Pantò"
+    given-names: "Marco"
+    email: "info@linuxshell.it"
+version: "0.1.0-draft"
+date-released: 2026-09-21
+abstract: >-
+  An evidence-focused release documenting simulated domestic navigation,
+  human-priority yielding, multisensor continuity, active resident search,
+  bidirectional person-following and reacquisition experiments conducted
+  with ROS 2, Nav2 and Gazebo.
+keywords:
+  - ROS 2
+  - Nav2
+  - Gazebo
+  - assistive robotics
+  - person following
+  - human-aware navigation
+  - sensor fusion
+  - reacquisition
+license: "CC-BY-4.0"
