@@ -141,7 +141,7 @@ The same continuity principle is exercised by already executed FOLLOW2 sessions:
 2. **R6, tracking segment 3:** max prediction age **0.412574 s**, then direct sensing resumes, no motion-prow switch.
 3. **R6, tracking segment 4:** max prediction age **0.129147 s**, then direct sensing resumes, no motion-prow switch.
 
-These are three logged episode-level observations across two accepted candidate-clean sessions, with no tuning between episodes inside a run.
+These are three logged episode-level observations across two candidate-clean sessions, with no tuning between episodes inside a run.
 
 ### Evidence strength
 
@@ -319,4 +319,4 @@ Use this inventory as the single source for:
 - a Nav2/OpenNav community discussion focused on Following Server integration, dropout/handoff and reacquisition;
 - an optional HRI late-breaking/pilot contribution.
 
-A machine-readable episode list for the FOLLOW contribution is supplied separately in `Rover_Assistive_Simulator_FOLLOW_Episode_Inventory_v1.csv`.
+A machine-readable episode list for the FOLLOW contribution is available at `data/follow_episode_inventory.csv`.
