@@ -35,3 +35,7 @@ Marco Pantò — info@linuxshell.it
 
 Documentation, evidence tables and datasets: CC BY 4.0.  
 Future source code / executable test harnesses: Apache-2.0 unless otherwise stated.
+
+## Archival DOI
+
+Zenodo: [10.5281/zenodo.22881350](https://doi.org/10.5281/zenodo.22881350)
