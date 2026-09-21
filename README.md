@@ -1,6 +1,6 @@
 # Rover Assistive Simulator — Engineering Evidence Release
 
-**Release candidate:** v0.1.0 — evidence freeze complete and ready for public publication.
+**Version:** v0.1.0 — initial engineering evidence release.
 
 This repository collects a small set of engineering findings from the Rover Assistive Simulator project, developed in a simulated domestic environment with ROS 2, Nav2 and Gazebo.
 
