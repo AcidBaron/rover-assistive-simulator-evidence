@@ -4,8 +4,8 @@ This repository is a draft until every blocking item below is resolved.
 
 ## Blocking before GitHub publication
 
-- [ ] Choose an explicit license. Do not call the repository open source until a license is selected.
-- [ ] Decide how author / contributor names should appear in `CITATION.cff`.
+- [x] Choose an explicit license. CC BY 4.0 is selected for evidence/documentation; Apache-2.0 is planned for code/test harnesses.
+- [x] Author set in `CITATION.cff`: Marco Pantò; contact: info@linuxshell.it.
 - [ ] Review every public file for personal filesystem paths, usernames, machine identifiers and unnecessary metadata.
 - [ ] Decide whether raw RESULTS bundles will be published, sanitized, or replaced by compact evidence extracts.
 - [ ] If sanitized bundles are produced, record both frozen-original SHA-256 and public-artifact SHA-256.
