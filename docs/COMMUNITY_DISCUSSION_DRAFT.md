@@ -1,4 +1,6 @@
-# Nav2 / Open Navigation community discussion — ready to post
+# Nav2 / Open Navigation community discussion — published
+
+**Published discussion:** https://github.com/orgs/ros-navigation/discussions/6552
 
 ## Suggested category
 
