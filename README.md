@@ -2,6 +2,10 @@
 
 **Version:** v0.1.0 — initial engineering evidence release.
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22881350.svg)](https://doi.org/10.5281/zenodo.22881350)
+
+**Archival DOI:** [10.5281/zenodo.22881350](https://doi.org/10.5281/zenodo.22881350)
+
 This repository collects a small set of engineering findings from the Rover Assistive Simulator project, developed in a simulated domestic environment with ROS 2, Nav2 and Gazebo.
 
 The goal is deliberately narrow: share the findings that may be useful to the ROS / Nav2 / assistive-robotics communities without presenting a long development history as a finished scientific benchmark.
@@ -48,8 +52,8 @@ This evidence release uses **CC BY 4.0** for documentation, evidence tables and 
 - `results/README.md` — immutable result identifiers, sizes and SHA-256 hashes.
 - `data/follow_episode_inventory.csv` — machine-readable FOLLOW episode list.
 - `docs/COMMUNITY_DISCUSSION_DRAFT.md` — draft for a Nav2 / OpenNav community discussion.
-- `CITATION.cff` — citation metadata draft.
-- `RELEASE_CHECKLIST.md` — items that must be completed before making the repository public.
+- `CITATION.cff` — citation metadata including the Zenodo DOI.
+- `RELEASE_CHECKLIST.md` — release/audit record for v0.1.0.
 
 ## Raw results
 
