@@ -26,7 +26,7 @@ The existing logged campaign already contains:
 - one accepted human-priority conflict resolved by a **single local lateral pull-over**, no backup fallback and current-pose rejoin;
 - a dedicated RGB/LiDAR/odom authority run plus at least **3 short-dropout recovery episodes** from later FOLLOW sessions;
 - one complete worst-case six-room resident search that rejected **5 rooms** before finding the silent resident in the sixth, without using the resident room or coordinates as runtime search authority;
-- at least **3 FRONT→REAR switches**, **3 short-dropout recoveries without prow switching**, and **7 TRUE_LOST→reacquire pairings** in accepted/candidate-clean FOLLOW sessions.
+- at least **3 FRONT→REAR switches**, **3 short-dropout recoveries without prow switching**, and **7 TRUE_LOST→reacquire pairings** in frozen FOLLOW logs, including candidate-clean sessions.
 
 These are engineering observations from already executed tests. They are **not** presented as independently randomized repetitions of identical conditions.
 
@@ -53,7 +53,9 @@ This evidence release uses **CC BY 4.0** for documentation, evidence tables and 
 
 ## Raw results
 
-Raw `RESULTS_*.zip` bundles are intentionally **not included in this draft repository**. Before publication they should be reviewed for machine-local paths, unnecessary screenshots, large transient logs and any content that is not required to reproduce the claim. The public release should contain either sanitized result bundles or compact evidence extracts with hashes linked to the frozen originals.
+Raw `RESULTS_*.zip` bundles are intentionally **not included in v0.1**. The frozen originals contain machine-local paths and development-only material that is unnecessary for the public claim. For this first release, the public evidence consists of compact, human-readable evidence tables, the episode CSV, source filenames, sizes and SHA-256 hashes of the frozen originals.
+
+If a maintainer or reviewer later needs a specific minimal reproducer, a sanitized extract can be prepared from the corresponding frozen source while retaining the original source hash.
 
 ## Development status
 
