@@ -1,8 +1,8 @@
-# Rover Assistive Simulator — Engineering Evidence Release Draft
+# Rover Assistive Simulator — Engineering Evidence Release
 
-**Draft status:** evidence freeze for community review; not yet a public release.
+**Release candidate:** v0.1.0 — evidence freeze complete and ready for public publication.
 
-This repository draft collects a small set of engineering findings from the Rover Assistive Simulator project, developed in a simulated domestic environment with ROS 2, Nav2 and Gazebo.
+This repository collects a small set of engineering findings from the Rover Assistive Simulator project, developed in a simulated domestic environment with ROS 2, Nav2 and Gazebo.
 
 The goal is deliberately narrow: share the findings that may be useful to the ROS / Nav2 / assistive-robotics communities without presenting a long development history as a finished scientific benchmark.
 
@@ -53,7 +53,7 @@ This evidence release uses **CC BY 4.0** for documentation, evidence tables and 
 
 ## Raw results
 
-Raw `RESULTS_*.zip` bundles are intentionally **not included in v0.1**. The frozen originals contain machine-local paths and development-only material that is unnecessary for the public claim. For this first release, the public evidence consists of compact, human-readable evidence tables, the episode CSV, source filenames, sizes and SHA-256 hashes of the frozen originals.
+Raw `RESULTS_*.zip` bundles are intentionally **not included in v0.1.0**. The frozen originals contain machine-local paths and development-only material that is unnecessary for the public claim. For this first release, the public evidence consists of compact, human-readable evidence tables, the episode CSV, source filenames, sizes and SHA-256 hashes of the frozen originals.
 
 If a maintainer or reviewer later needs a specific minimal reproducer, a sanitized extract can be prepared from the corresponding frozen source while retaining the original source hash.
 
