@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this evidence release, please cite this record."
+message: "If you use this evidence release, please cite the archived v0.1.0 record."
 title: "Rover Assistive Simulator: Engineering Evidence for Domestic Human-Aware Navigation and Person Following with ROS 2/Nav2"
 type: dataset
 authors:
@@ -8,6 +8,8 @@ authors:
     email: "info@linuxshell.it"
 version: "0.1.0"
 date-released: 2026-09-21
+doi: "10.5281/zenodo.22881350"
+url: "https://doi.org/10.5281/zenodo.22881350"
 abstract: >-
   An evidence-focused release documenting simulated domestic navigation,
   human-priority yielding, multisensor continuity, active resident search,
