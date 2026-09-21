@@ -1,24 +1,26 @@
 # Public Release Checklist
 
-This repository is a draft until every blocking item below is resolved.
+This repository remains private until the final publication step.
 
 ## Blocking before GitHub publication
 
 - [x] Choose an explicit license. CC BY 4.0 is selected for evidence/documentation; Apache-2.0 is planned for code/test harnesses.
 - [x] Author set in `CITATION.cff`: Marco Pantò; contact: info@linuxshell.it.
-- [ ] Review every public file for personal filesystem paths, usernames, machine identifiers and unnecessary metadata.
-- [ ] Decide whether raw RESULTS bundles will be published, sanitized, or replaced by compact evidence extracts.
-- [ ] If sanitized bundles are produced, record both frozen-original SHA-256 and public-artifact SHA-256.
-- [ ] Verify that no resident ground-truth data presented as a runtime authority is accidentally mixed into public examples.
-- [ ] Verify that automatic `candidate_clean` labels are not described as accepted when operator analysis rejected the behavior.
-- [ ] Check that all numeric claims in `README.md` and `EVIDENCE.md` trace to the frozen result index.
+- [x] Review the public text files for personal filesystem paths, usernames, machine identifiers and unnecessary metadata. None are present in the public draft; raw RESULTS are excluded.
+- [x] Decide how to handle raw RESULTS bundles for v0.1: publish compact evidence extracts only. Raw bundles remain private.
+- [x] Verify ground-truth wording: ground truth is described only as test-oracle/validation evidence, not runtime acquisition/search authority.
+- [x] Verify candidate-clean wording: automatic `candidate_clean` is explicitly distinguished from operator acceptance; R22.8 is retained as negative evidence.
+- [x] Verify frozen result filenames, sizes and SHA-256 values against the original archived ZIP files.
+- [x] Cross-check the main numeric claims against the frozen result summaries and FOLLOW episode inventory.
 
-## Recommended repository settings
+## Final publication actions
 
-- Proposed repository name: `rover-assistive-simulator-evidence`.
-- Start as private while sanitization is performed.
-- Use a tagged first evidence release only after the files above are frozen.
-- Create a Zenodo archive / DOI only after the GitHub release is public and immutable enough to cite.
+- [ ] Remove draft-only process files that are not useful to public readers.
+- [ ] Change the README/CITATION status from draft to v0.1 release.
+- [ ] Make the repository public.
+- [ ] Create a tagged GitHub release.
+- [ ] Optionally connect the public release to Zenodo for a DOI.
+- [ ] Post the prepared Nav2/OpenNav community discussion only after the public release URL is stable.
 
 ## Optional later work — not required now
 
@@ -29,7 +31,7 @@ This repository is a draft until every blocking item below is resolved.
 
 ## Resolved metadata
 
-- [x] Author set to Marco Pantò.
-- [x] Contact email set to info@linuxshell.it.
-- [x] Evidence/documentation license selected: CC BY 4.0.
-- [x] Planned code/test-harness license selected: Apache-2.0.
+- [x] Author: Marco Pantò.
+- [x] Contact: info@linuxshell.it.
+- [x] Evidence/documentation license: CC BY 4.0.
+- [x] Planned code/test-harness license: Apache-2.0.
