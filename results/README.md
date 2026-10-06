@@ -17,3 +17,16 @@ The following result identifiers are the frozen evidence sources used by `EVIDEN
 ## Integrity rule
 
 A public evidence extract should retain the source filename and SHA-256 of the frozen original from which it was derived. If a sanitized public bundle is created, publish both the original frozen hash and the sanitized artifact hash, clearly labeling which one readers can download.
+
+
+## Nav2 FollowObject — WAITING_FOR_TARGET
+
+A separate evidence set documents the proposed bounded target-loss hold for the Nav2 Following Server.
+
+- Baseline: Nav2 Jazzy 1.3.13, commit `f4108e5b1c2bce804a1aa0c7be6673a8eb4a1501`
+- Validation: 3 independent suites × 5 scenarios = **15/15 PASS**
+- Evidence directory: [`results/nav2_waiting_for_target/`](nav2_waiting_for_target/)
+- Patch: [`WAITING_FOR_TARGET.patch`](nav2_waiting_for_target/WAITING_FOR_TARGET.patch)
+- Result matrix: [`RESULT_MATRIX.csv`](nav2_waiting_for_target/RESULT_MATRIX.csv)
+
+The demonstration video is intentionally kept out of Git and is intended for attachment to the upstream Nav2 PR / discussion.
