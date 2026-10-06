@@ -1,0 +1,16 @@
+run_id,scenario,result,key_observation,latency_s
+20261006_163946,short,PASS,"WAITING -> CONTROLLING; retries remain 0; cmd_vel zero",
+20261006_163946,long,PASS,"WAITING -> RETRY; retries increment to 1 after timeout",
+20261006_163946,cancel,PASS,"cancel during WAITING",0.021
+20261006_163946,preempt,PASS,"preempt during WAITING",0.011
+20261006_163946,repeated,PASS,"3 short dropouts; no spurious retry",
+20261006_164620,short,PASS,"WAITING -> CONTROLLING; retries remain 0; cmd_vel zero",
+20261006_164620,long,PASS,"WAITING -> RETRY; retries increment to 1 after timeout",
+20261006_164620,cancel,PASS,"cancel during WAITING",0.022
+20261006_164620,preempt,PASS,"preempt during WAITING",0.022
+20261006_164620,repeated,PASS,"3 short dropouts; no spurious retry",
+20261006_164724,short,PASS,"WAITING -> CONTROLLING; retries remain 0; cmd_vel zero",
+20261006_164724,long,PASS,"WAITING -> RETRY; retries increment to 1 after timeout",
+20261006_164724,cancel,PASS,"cancel during WAITING",0.010
+20261006_164724,preempt,PASS,"preempt during WAITING",0.006
+20261006_164724,repeated,PASS,"3 short dropouts; no spurious retry",
