@@ -1,0 +1,128 @@
+diff --git a/nav2_following/opennav_following/include/opennav_following/parameter_handler.hpp b/nav2_following/opennav_following/include/opennav_following/parameter_handler.hpp
+index 9d35c593..b5fdf80b 100644
+--- a/nav2_following/opennav_following/include/opennav_following/parameter_handler.hpp
++++ b/nav2_following/opennav_following/include/opennav_following/parameter_handler.hpp
+@@ -34,6 +34,8 @@ struct Parameters
+   double controller_frequency;
+   // Timeout to detect the object
+   double detection_timeout;
++  // Hold duration after target loss before consuming a retry
++  double target_loss_hold_timeout;
+   // Timeout to detect the object while rotating to it
+   double rotate_to_object_timeout;
+   // Timeout after which a static object is considered as goal reached
+diff --git a/nav2_following/opennav_following/src/following_server.cpp b/nav2_following/opennav_following/src/following_server.cpp
+index 6ccd7ea6..d909de72 100644
+--- a/nav2_following/opennav_following/src/following_server.cpp
++++ b/nav2_following/opennav_following/src/following_server.cpp
+@@ -289,6 +289,68 @@ void FollowingServer::followObject()
+           dynamic_pose_sub_.reset();
+           return;
+         }
++      } catch (opennav_docking_core::FailedToDetectDock & e) {
++        // A lost target first enters a bounded hold. Keep the robot stopped and
++        // do not consume a retry while waiting for the same target to reappear.
++        publishZeroVelocity();
++        const auto wait_start = this->now();
++        const auto wait_timeout =
++          rclcpp::Duration::from_seconds(params_->target_loss_hold_timeout);
++        bool reacquired = false;
++
++        while (rclcpp::ok() && this->now() - wait_start < wait_timeout) {
++          iteration_start_time_ = this->now();
++          publishFollowingFeedback(FollowObject::Feedback::WAITING_FOR_TARGET);
++          publishZeroVelocity();
++
++          // Cancellation and preemption remain immediate during the hold.
++          if (checkAndWarnIfCancelled<FollowObject>(following_action_server_, "follow_object") ||
++            checkAndWarnIfPreempted<FollowObject>(following_action_server_, "follow_object"))
++          {
++            result->total_elapsed_time = this->now() - action_start_time_;
++            result->num_retries = num_retries_;
++            publishZeroVelocity();
++            following_action_server_->terminate_all(result);
++            dynamic_pose_sub_.reset();
++            return;
++          }
++
++          try {
++            if (getTrackingPose(object_pose, target_frame)) {
++              reacquired = true;
++              break;
++            }
++          } catch (opennav_docking_core::FailedToDetectDock &) {
++            // Still absent: remain stopped in WAITING_FOR_TARGET until timeout.
++          }
++
++          loop_rate.sleep();
++        }
++
++        if (reacquired) {
++          RCLCPP_INFO(get_logger(), "Target reacquired during hold; resuming control");
++          continue;
++        }
++
++        // Only after the hold expires do we consume a retry. Publish RETRY
++        // explicitly so this transition is observable with either recovery mode.
++        if (++num_retries_ > params_->max_retries) {
++          RCLCPP_ERROR(get_logger(), "Failed to follow, all retries have been used");
++          throw;
++        }
++        publishFollowingFeedback(FollowObject::Feedback::RETRY);
++        RCLCPP_WARN(get_logger(), "Target hold expired, will retry: %s", e.what());
++
++        if (params_->search_by_rotating) {
++          RCLCPP_INFO(get_logger(), "Rotating to find object again");
++          if (!rotateToObject(object_pose, target_frame)) {
++            publishZeroVelocity();
++            following_action_server_->terminate_all(result);
++            return;
++          }
++        } else {
++          RCLCPP_INFO(get_logger(), "Using last known heading to find object again");
++        }
+       } catch (opennav_docking_core::DockingException & e) {
+         if (++num_retries_ > params_->max_retries) {
+           RCLCPP_ERROR(get_logger(), "Failed to follow, all retries have been used");
+diff --git a/nav2_following/opennav_following/src/parameter_handler.cpp b/nav2_following/opennav_following/src/parameter_handler.cpp
+index ffcc1331..fa722672 100644
+--- a/nav2_following/opennav_following/src/parameter_handler.cpp
++++ b/nav2_following/opennav_following/src/parameter_handler.cpp
+@@ -35,6 +35,8 @@ ParameterHandler::ParameterHandler(
+     node, "controller_frequency", rclcpp::ParameterValue(50.0));
+   nav2_util::declare_parameter_if_not_declared(
+     node, "detection_timeout", rclcpp::ParameterValue(2.0));
++  nav2_util::declare_parameter_if_not_declared(
++    node, "target_loss_hold_timeout", rclcpp::ParameterValue(1.0));
+   nav2_util::declare_parameter_if_not_declared(
+     node, "rotate_to_object_timeout", rclcpp::ParameterValue(10.0));
+   nav2_util::declare_parameter_if_not_declared(
+@@ -70,6 +72,7 @@ ParameterHandler::ParameterHandler(
+ 
+   node->get_parameter("controller_frequency", params_.controller_frequency);
+   node->get_parameter("detection_timeout", params_.detection_timeout);
++  node->get_parameter("target_loss_hold_timeout", params_.target_loss_hold_timeout);
+   node->get_parameter("rotate_to_object_timeout", params_.rotate_to_object_timeout);
+   node->get_parameter("static_object_timeout", params_.static_object_timeout);
+   node->get_parameter("linear_tolerance", params_.linear_tolerance);
+@@ -146,6 +149,8 @@ rcl_interfaces::msg::SetParametersResult ParameterHandler::dynamicParametersCall
+         params_.controller_frequency = parameter.as_double();
+       } else if (param_name == "detection_timeout") {
+         params_.detection_timeout = parameter.as_double();
++      } else if (param_name == "target_loss_hold_timeout") {
++        params_.target_loss_hold_timeout = parameter.as_double();
+       } else if (param_name == "rotate_to_object_timeout") {
+         params_.rotate_to_object_timeout = parameter.as_double();
+       } else if (param_name == "static_object_timeout") {
+diff --git a/nav2_msgs/action/FollowObject.action b/nav2_msgs/action/FollowObject.action
+index 8f865177..4772d40f 100644
+--- a/nav2_msgs/action/FollowObject.action
++++ b/nav2_msgs/action/FollowObject.action
+@@ -28,6 +28,7 @@ uint16 INITIAL_PERCEPTION=1
+ uint16 CONTROLLING=2
+ uint16 STOPPING=3
+ uint16 RETRY=4
++uint16 WAITING_FOR_TARGET=5
+ 
+ uint16 state  # Current following state
+ builtin_interfaces/Duration following_time
